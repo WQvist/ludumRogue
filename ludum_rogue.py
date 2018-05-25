@@ -7,13 +7,10 @@ screensize = width, height = 640, 480
 black = 0, 0, 0
 white = 255, 255, 255
 screen = pygame.display.set_mode(screensize)
-global swap
-global boll
-global boll_rect
 
-def render(boll_info):
-    screen.fill(black)
-    screen.blit(boll_info[0], boll_info[1])
+def render(sprites):
+    for sprite in sprites:
+        screen.blit(sprite[0], sprite[1])
     pygame.display.flip()
 
 def controll_keyDown(event, current_speed):
@@ -54,10 +51,11 @@ def ticks_per_second(tps):
 
 def main():
     # Gameloop
-    boll = pygame.image.load("boll.png")
-    boll_rect = boll.get_rect()
-    boll_rect = boll_rect.move([320,240])
-    bollen = [boll, boll_rect]
+    background = pygame.image.load("assets/background.jpg"), (0,0)
+    nonja = pygame.image.load("assets/nonja.png")
+    nonja_rect = nonja.get_rect()
+    nonja_rect = nonja_rect.move([320,240])
+    nonjaen = [nonja, nonja_rect]
     direction = [0,0]
     time = 0
     game_ticks = ticks_per_second(64)
@@ -74,9 +72,12 @@ def main():
                     direction = controll_keyDown(event,direction)
                 elif event.type == pygame.KEYUP:
                     direction = controll_keyUp(event, direction)
-            boll_rect = boll_rect.move(direction)
-            bollen = [boll, boll_rect]
-            render(bollen)
+            nonja_rect = nonja_rect.move(direction)
+            nonjaen = [nonja, nonja_rect]
+            sprites = [background, nonjaen]
+            render(sprites)
+            #render([background,(0,0)])
+            #render(nonjaen)
         time = pygame.time.get_ticks()
 
 main()
