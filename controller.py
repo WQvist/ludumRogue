@@ -1,35 +1,28 @@
-import pygame
+import pygame, sys
 
 class keyboard_controller():
-    def keyDown(self,event, current_speed):
+    def __init__(self, char):
+        self.char = char
+         
+    def keyDown(self,event):
         if event.key == pygame.K_RIGHT:
-            current_speed[0] += 1
-            return current_speed
+            self.char.speed[0] +=1
         elif event.key == pygame.K_DOWN:
-            current_speed[1] +=1
-            return current_speed
+            self.char.speed[1] +=1
         elif event.key == pygame.K_LEFT:
-            current_speed[0] -= 1
-            return current_speed
+            self.char.speed[0] -= 1
         elif event.key == pygame.K_UP:
-            current_speed[1] -= 1
-            return current_speed
-        else:
-            return current_speed
+            self.char.speed[1] -= 1
+        elif event.key == pygame.K_ESCAPE:
+            sys.exit()
 
 
-    def keyUp(self,event, current_speed):
+    def keyUp(self,event):
         if event.key == pygame.K_RIGHT:
-            current_speed[0] -= 1
-            return current_speed
+            self.char.speed[0] -= 1
         elif event.key == pygame.K_DOWN:
-            current_speed[1] -=1
-            return current_speed
+            self.char.speed[1] -=1
         elif event.key == pygame.K_LEFT:
-            current_speed[0] += 1
-            return current_speed
+            self.char.speed[0] += 1
         elif event.key == pygame.K_UP:
-            current_speed[1] += 1
-            return current_speed
-        else:
-            return current_speed
+            self.char.speed[1] += 1
