@@ -1,16 +1,18 @@
 #imports
-import pygame, sys, event_handler
+import pygame, sys, event_handler, settings
 from controller import keyboard_controller
 from nonja_char import Nonja
 
+
 # Setup
 pygame.init()
-screensize = width, height = 640, 480
-black = 0, 0, 0
-white = 255, 255, 255
+settings = settings.Settings()
+
 background = pygame.image.load("assets/background.jpg"), (0,0)
-screen = pygame.display.set_mode(screensize)
-nonja = Nonja(screen)
+screen = pygame.display.set_mode(
+    (settings.screen_width,settings.screen_height)
+    )
+nonja = Nonja(screen, settings)
 key_controller = keyboard_controller(nonja)
 
 
