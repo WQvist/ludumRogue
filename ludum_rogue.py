@@ -26,6 +26,8 @@ def ticks_per_second(tps):
 
 def main():
     # Gameloop
+    pygame.mixer.music.load('assets/theme.wav')
+    pygame.mixer.music.play(-1)
     time = 0
     game_ticks = ticks_per_second(64)
     delta = time+game_ticks
