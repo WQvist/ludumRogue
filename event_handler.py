@@ -1,5 +1,4 @@
-import pygame, sys
-from controller import keyboard_controller
+import pygame, sys, controllers
 
 
 def check_events(keyboard_controller):

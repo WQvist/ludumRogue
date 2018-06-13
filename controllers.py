@@ -22,7 +22,9 @@ class keyboard_controller():
             self.char.move_right = False
         elif event.key == pygame.K_LEFT:
             self.char.move_left = False
-        """elif event.key == pygame.K_UP:
-            if self.char.jump:
-                self.char.jump = False
-                self.char.falling = True"""
+            
+class sound_controller():
+	
+	def play_themesong(self):
+		pygame.mixer.music.load('assets/theme.wav')
+		pygame.mixer.music.play(-1)
