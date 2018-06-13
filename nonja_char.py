@@ -7,7 +7,7 @@ class Nonja():
         self.speed_factor = settings.speed_factor
         self.image = pygame.image.load("assets/nonja.png")
         self.rect = self.image.get_rect()
-        self.move_right = False
+        self.move_right= False
         self.move_left = False
         self.jump = False
         self.falling = True
