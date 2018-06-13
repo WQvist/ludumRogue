@@ -24,7 +24,7 @@ class Nonja():
             self.speed[0] = 0
         if self.falling:
             self.speed[1] += self.settings.gravity
-        if self.rect.bottom > self.settings.screen_height:
+        if self.rect.bottom+self.speed[1] > self.settings.screen_height:
             self.rect.bottom = self.settings.screen_height
             self.speed[1] = 0
             self.falling = False
