@@ -1,9 +1,12 @@
+"""Main character class for the game"""
 import pygame
 
 class Nonja():
+    """The character class itself"""
     def __init__(self, screen, settings):
+        """Instanceiate the main character"""
         self.screen = screen
-        self.speed = [0,0]
+        self.speed = [0, 0]
         self.speed_factor = settings.speed_factor
         self.image = pygame.image.load("assets/nonja.png")
         self.rect = self.image.get_rect()
@@ -14,6 +17,7 @@ class Nonja():
         self.settings = settings
 
     def move(self):
+        """Update the characters position"""
         if self.move_left:
             self.speed[0] = -self.speed_factor
         if self.move_right:
@@ -35,4 +39,5 @@ class Nonja():
         self.rect = self.rect.move(self.speed)
 
     def blitme(self):
+        """Render the character"""
         self.screen.blit(self.image, self.rect)

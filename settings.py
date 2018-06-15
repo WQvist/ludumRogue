@@ -1,5 +1,6 @@
+"""Gloval Gamesettings"""
 class Settings():
-    # A class to store our settings
+    """A class to store our settings"""
 
     def __init__(self):
         # Screen settings

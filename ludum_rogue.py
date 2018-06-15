@@ -1,43 +1,52 @@
+"""Main setup for the game. This module also contains
+   the main gameloop"""
 #imports
-import pygame, sys, event_handler, settings
-from controller import keyboard_controller
+import sys
+import pygame
+import event_handler
+import settings
+from controller import KeyboardController
 from nonja_char import Nonja
 
 
 # Setup
 pygame.init()
-settings = settings.Settings()
+SETTINGS = settings.Settings()
 
-background = pygame.image.load("assets/background.jpg"), (0,0)
-screen = pygame.display.set_mode(
-    (settings.screen_width,settings.screen_height)
+BACKGROUND = pygame.image.load("assets/background.jpg"), (0, 0)
+SCREEN = pygame.display.set_mode(
+    (SETTINGS.screen_width, SETTINGS.screen_height)
     )
-nonja = Nonja(screen, settings)
-key_controller = keyboard_controller(nonja)
+NONJA = Nonja(SCREEN, SETTINGS)
+KEY_CONTROLLER = KeyboardController(NONJA)
 
 
 def render():
-    screen.blit(background[0],background[1])
-    nonja.blitme()
-    pygame.display.flip()
+	"""Renderes the world and all objects"""
+	SCREEN.blit(BACKGROUND[0], BACKGROUND[1])
+	NONJA.blitme()
+	pygame.display.flip()
 
 def ticks_per_second(tps):
-    return 1000/tps
+	"""Returns the amount of miliseconds to achieve
+	   the desired Tickrate"""
+	return 1000/tps
 
 def main():
-    # Gameloop
-    pygame.mixer.music.load('assets/theme.wav')
-    pygame.mixer.music.play(-1)
-    time = 0
-    game_ticks = ticks_per_second(64)
-    delta = time+game_ticks
-    while 1:
-        if time > delta:
-            delta = time + game_ticks
-            event_handler.check_events(key_controller)
-            nonja.move()
-            render()
-        time = pygame.time.get_ticks()
+	"""Main gameloop"""
+	# Gameloop
+	pygame.mixer.music.load('assets/theme.wav')
+	pygame.mixer.music.play(-1)
+	time = 0
+	game_ticks = ticks_per_second(64)
+	delta = time+game_ticks
+	while 1:
+		if time > delta:
+			delta = time + game_ticks
+			event_handler.check_events(KEY_CONTROLLER)
+			NONJA.move()
+			render()
+		time = pygame.time.get_ticks()
 
 
 main()
